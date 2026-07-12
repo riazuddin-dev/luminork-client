@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { PageLoader } from "@/components/ui/Spinner";
 import type { UserRole } from "@/types";
 
 export function ProtectedRoute({
@@ -35,11 +36,7 @@ export function ProtectedRoute({
   }, [loading, isAuthenticated, user, roles, router, pathname]);
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center pt-24">
-        <div className="h-10 w-10 animate-spin rounded-full border-2 border-indigo-400/30 border-t-indigo-400" />
-      </div>
-    );
+    return <PageLoader message="Checking session…" className="min-h-[60vh] pt-24" />;
   }
 
   if (!isAuthenticated) return null;
