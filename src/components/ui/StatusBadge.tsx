@@ -52,7 +52,7 @@ export function ApplicationStatusBadge({
       <span
         className={cn(
           "h-1.5 w-1.5 rounded-full",
-          meta.tone === "amber" && "bg-amber-400",
+          meta.tone === "amber" && "bg-amber-400 animate-pulse",
           meta.tone === "cyan" && "bg-cyan-400",
           meta.tone === "violet" && "bg-violet-400",
           meta.tone === "rose" && "bg-rose-400",
