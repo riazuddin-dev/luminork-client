@@ -57,10 +57,11 @@ export function PageLoader({
     >
       <div className="relative flex h-16 w-16 items-center justify-center">
         <span className="absolute inset-0 animate-ping rounded-full bg-indigo-500/20" />
+        <span className="absolute inset-1 animate-pulse rounded-full border border-cyan-400/15" />
         <span className="absolute inset-2 rounded-full border border-white/10 bg-slate-900/80" />
         <Spinner size="lg" className="relative" />
       </div>
-      <p className="text-sm font-medium text-slate-400">{message}</p>
+      <p className="text-sm font-medium tracking-wide text-slate-400">{message}</p>
     </div>
   );
 }
