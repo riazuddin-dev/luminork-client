@@ -24,17 +24,28 @@ npm run dev
 Or client only:
 
 ```bash
-cd client
+cd luminork-client
 npm run dev
 ```
 
-Create `.env.local`:
+Create `.env.local` from the example:
+
+```bash
+cp .env.example .env.local
+```
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5000/api
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## Deploy (Vercel)
+
+See **[DEPLOY.md](./DEPLOY.md)** for full Vercel steps.
+
+Quick reminder: set `NEXT_PUBLIC_API_URL` to your live API base including `/api`, e.g.  
+`https://your-api.onrender.com/api`.
 
 ## Demo credentials
 
