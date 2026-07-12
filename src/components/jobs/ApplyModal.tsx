@@ -43,6 +43,10 @@ export function ApplyModal({
     };
   }, [open]);
 
+  // Character counter for cover letter guidance
+  const coverLen = coverLetter.trim().length;
+  const coverOk = coverLen >= 20;
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" && open && !loading) onClose();
@@ -155,8 +159,14 @@ export function ApplyModal({
                   placeholder="Tell the hiring team why you are a great fit (min 20 characters)..."
                   className="min-h-36"
                 />
-                <p className="mt-1 text-xs text-slate-500">
-                  {coverLetter.trim().length}/20 minimum characters
+                <p
+                  className={`mt-1 text-xs ${
+                    coverOk ? "text-emerald-400/90" : "text-slate-500"
+                  }`}
+                >
+                  {coverLen < 20
+                    ? `${coverLen}/20 minimum characters`
+                    : `${coverLen} characters · looks good`}
                 </p>
               </div>
 
