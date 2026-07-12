@@ -90,7 +90,7 @@ export function DashboardHero({
       <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-2xl">
           {badge}
-          <h1 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-[2.6rem] sm:leading-tight">
+          <h1 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-[2.6rem] sm:leading-tight [text-wrap:balance]">
             {title}
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
