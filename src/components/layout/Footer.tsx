@@ -24,12 +24,12 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-slate-950">
+    <footer className="border-t border-white/10 bg-gradient-to-b from-slate-950 to-slate-950">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2">
-              <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-400 text-white">
+              <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-400 text-white shadow-lg shadow-indigo-500/25">
                 <Sparkles className="h-5 w-5" />
               </span>
               <span className="text-lg font-bold text-white">
@@ -37,8 +37,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
-              Luminork is a modern career platform that connects ambitious talent
-              with high-quality opportunities across engineering, design,
+              Luminork is a premium career marketplace connecting ambitious
+              talent with high-quality opportunities across engineering, design,
               product, and growth roles.
             </p>
             <div className="mt-5 space-y-2 text-sm text-slate-400">
