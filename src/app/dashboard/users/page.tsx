@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
+import { ListSkeleton } from "@/components/ui/Skeleton";
 import { api } from "@/lib/api";
 import { formatDate, getInitials } from "@/lib/utils";
 
@@ -67,13 +68,13 @@ function UsersContent() {
             </thead>
             <tbody className="divide-y divide-white/10">
               {loading
-                ? Array.from({ length: 4 }).map((_, i) => (
-                    <tr key={i}>
-                      <td colSpan={4} className="py-3">
-                        <div className="h-10 animate-pulse rounded-lg bg-slate-800" />
+                ? (
+                    <tr>
+                      <td colSpan={4} className="py-4">
+                        <ListSkeleton rows={4} />
                       </td>
                     </tr>
-                  ))
+                  )
                 : users.map((u) => (
                     <tr key={u.id}>
                       <td className="py-3">

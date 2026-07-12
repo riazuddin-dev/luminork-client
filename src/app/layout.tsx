@@ -15,12 +15,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://luminork-client.vercel.app"),
   title: {
     default: "Luminork | Premium Career Platform",
     template: "%s | Luminork",
   },
   description:
     "Luminork is a modern full-stack job portal for discovering roles, posting openings, and managing hiring with a premium experience.",
+  openGraph: {
+    title: "Luminork | Premium Career Platform",
+    description:
+      "Discover verified roles, apply with confidence, and manage hiring from a premium dashboard.",
+    url: "https://luminork-client.vercel.app",
+    siteName: "Luminork",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

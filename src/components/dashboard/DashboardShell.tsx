@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { Sidebar } from "@/components/dashboard/Sidebar";
 import { TopNavbar } from "@/components/dashboard/TopNavbar";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { useAuth } from "@/context/AuthContext";
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -42,7 +43,7 @@ function Shell({ children }: { children: React.ReactNode }) {
           }}
         />
         <div className="mx-auto max-w-[1400px] p-4 sm:p-6 lg:p-8">
-          {children}
+          <PageTransition>{children}</PageTransition>
         </div>
       </div>
     </div>

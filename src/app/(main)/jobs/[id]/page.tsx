@@ -21,6 +21,7 @@ import { api } from "@/lib/api";
 import type { Application, Job } from "@/types";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { Skeleton } from "@/components/ui/Skeleton";
 import { JobCard } from "@/components/jobs/JobCard";
 import { ApplyModal } from "@/components/jobs/ApplyModal";
 import { formatDate, formatSalary } from "@/lib/utils";
@@ -164,10 +165,14 @@ export default function JobDetailsPage() {
 
   if (loading) {
     return (
-      <div className="mx-auto max-w-7xl px-4 pt-28">
-        <div className="h-72 animate-pulse rounded-2xl bg-slate-800" />
-        <div className="mt-6 h-8 w-1/2 animate-pulse rounded bg-slate-800" />
-        <div className="mt-4 h-24 animate-pulse rounded bg-slate-800" />
+      <div className="mx-auto max-w-7xl space-y-6 px-4 pt-28 pb-16">
+        <Skeleton className="h-72 w-full rounded-2xl" />
+        <Skeleton className="h-8 w-1/2 max-w-md" />
+        <Skeleton className="h-4 w-1/3 max-w-xs" />
+        <div className="grid gap-4 lg:grid-cols-3">
+          <Skeleton className="h-40 w-full lg:col-span-2" />
+          <Skeleton className="h-40 w-full" />
+        </div>
       </div>
     );
   }

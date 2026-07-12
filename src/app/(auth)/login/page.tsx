@@ -65,7 +65,7 @@ function LoginForm() {
       toast.error(isNetwork ? "Connection failed" : "Login failed", {
         id: toastId,
         description: isNetwork
-          ? "Could not reach the API. Is the server running on port 5000?"
+          ? "Could not reach the Luminork API. Check your connection or API status."
           : message,
       });
     } finally {

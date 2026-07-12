@@ -42,10 +42,19 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Deploy (Vercel)
 
+**Live site:** https://luminork-client.vercel.app
+
 See **[DEPLOY.md](./DEPLOY.md)** for full Vercel steps.
 
-Quick reminder: set `NEXT_PUBLIC_API_URL` to your live API base including `/api`, e.g.  
-`https://your-api.onrender.com/api`.
+### Production env (required after API is deployed)
+
+In Vercel → Settings → Environment Variables:
+
+```env
+NEXT_PUBLIC_API_URL=https://YOUR-API-HOST/api
+```
+
+Then **Redeploy**. All client API calls go through `src/lib/api.ts` → `API_BASE_URL` from `src/lib/config.ts`.
 
 ## Demo credentials
 

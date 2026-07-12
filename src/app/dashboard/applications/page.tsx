@@ -22,6 +22,8 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { Input, Select } from "@/components/ui/Input";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { ListSkeleton } from "@/components/ui/Skeleton";
 import { ApplicationStatusBadge } from "@/components/ui/StatusBadge";
 import { useAuth } from "@/context/AuthContext";
 import { api } from "@/lib/api";
@@ -76,19 +78,15 @@ function MyApplicationsContent() {
         </CardHeader>
         <CardContent className="space-y-3">
           {loading ? (
-            Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className="h-20 animate-pulse rounded-xl bg-slate-800"
-              />
-            ))
+            <ListSkeleton rows={4} />
           ) : items.length === 0 ? (
-            <div className="py-10 text-center">
-              <p className="text-sm text-slate-400">No applications yet.</p>
-              <Link href="/jobs" className="mt-4 inline-block">
-                <Button size="sm">Explore jobs</Button>
-              </Link>
-            </div>
+            <EmptyState
+              icon={FileText}
+              title="No applications yet"
+              description="Explore open roles and apply — your submissions will show up here."
+              actionLabel="Explore jobs"
+              actionHref="/jobs"
+            />
           ) : (
             items.map((app) => {
               const job = asJob(app.jobId);

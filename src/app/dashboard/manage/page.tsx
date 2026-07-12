@@ -8,6 +8,7 @@ import { RoleGate } from "@/components/dashboard/RoleGate";
 import { Button } from "@/components/ui/Button";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { ListSkeleton } from "@/components/ui/Skeleton";
 import { JobStatusBadge } from "@/components/ui/StatusBadge";
 import {
   Card,
@@ -83,12 +84,7 @@ function ManageJobsContent() {
         </CardHeader>
         <CardContent className="space-y-3">
           {loading ? (
-            Array.from({ length: 3 }).map((_, i) => (
-              <div
-                key={i}
-                className="h-20 animate-pulse rounded-xl bg-slate-800"
-              />
-            ))
+            <ListSkeleton rows={3} />
           ) : jobs.length === 0 ? (
             <EmptyState
               title="No jobs posted yet"

@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { RoleGate } from "@/components/dashboard/RoleGate";
 import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { Skeleton } from "@/components/ui/Skeleton";
 import {
   Card,
   CardContent,
@@ -69,7 +70,7 @@ function SavedJobsContent() {
           {loading ? (
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="h-36 animate-pulse rounded-xl bg-slate-800" />
+                <Skeleton key={i} className="h-36 w-full" />
               ))}
             </div>
           ) : items.length === 0 ? (

@@ -8,12 +8,22 @@ import type {
   SavedJobItem,
   User,
 } from "@/types";
+import { API_BASE_URL } from "@/lib/config";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+/** Public API base (always includes /api, no trailing slash). */
+export function getApiUrl(): string {
+  return API_BASE_URL;
+}
 
 function getToken(): string | null {
   if (typeof window === "undefined") return null;
   return localStorage.getItem("luminork_token");
+}
+
+function buildUrl(path: string): string {
+  const base = API_BASE_URL.replace(/\/+$/, "");
+  const p = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${p}`;
 }
 
 async function request<T>(
@@ -33,25 +43,39 @@ async function request<T>(
 
   let res: Response;
   try {
-    res = await fetch(`${API_URL}${path}`, {
+    res = await fetch(buildUrl(path), {
       ...options,
       headers,
       cache: "no-store",
     });
   } catch {
-    throw new Error("Network error: failed to reach the server");
+    throw new Error(
+      "Network error: could not reach the Luminork API. Check your connection or try again later."
+    );
   }
 
-  const data = await res.json();
+  let data: ApiResponse<T> & { message?: string; code?: string };
+  try {
+    data = await res.json();
+  } catch {
+    throw new Error(
+      res.ok
+        ? "Invalid response from server"
+        : `Request failed (${res.status})`
+    );
+  }
 
   if (!res.ok) {
-    throw new Error(data.message || "Request failed");
+    throw new Error(data.message || `Request failed (${res.status})`);
   }
 
   return data;
 }
 
 export const api = {
+  /** Expose base URL for diagnostics / settings UI */
+  getBaseUrl: getApiUrl,
+
   register: (body: { name: string; email: string; password: string }) =>
     request<{ token: string; user: User }>("/auth/register", {
       method: "POST",

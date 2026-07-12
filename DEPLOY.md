@@ -23,19 +23,28 @@ Deploy the **API first** (Render or Railway), then point this app at it.
    | Name | Value | Environments |
    |------|--------|--------------|
    | `NEXT_PUBLIC_API_URL` | `https://YOUR-API-HOST/api` | Production (and Preview if desired) |
+   | `NEXT_PUBLIC_SITE_URL` | `https://luminork-client.vercel.app` | Production (optional) |
 
-   Include the `/api` suffix. Example:  
-   `https://luminork-server.onrender.com/api`
+   Include the `/api` suffix (or origin only — the client normalizes to `/api`).  
+   Example: `https://luminork-server.onrender.com/api`
 
-5. Click **Deploy**.
-6. Copy your production URL, e.g. `https://luminork-client.vercel.app`.
-7. On the **server** host, set:
+5. Click **Deploy** (or **Redeploy** after changing env vars).
+
+   Live client: **https://luminork-client.vercel.app**
+
+6. On the **server** host, set:
 
    ```env
    CLIENT_URL=https://luminork-client.vercel.app
    ```
 
    Redeploy the server so CORS allows the Vercel origin.
+
+### Update API URL after the server is live
+
+1. Vercel → Project → **Settings → Environment Variables**
+2. Set / edit `NEXT_PUBLIC_API_URL` = `https://your-live-api/api`
+3. **Deployments → … → Redeploy** (required — `NEXT_PUBLIC_*` is baked at build time)
 
 ## Option B — Vercel CLI
 
