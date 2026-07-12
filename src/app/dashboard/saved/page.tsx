@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { RoleGate } from "@/components/dashboard/RoleGate";
 import { Button } from "@/components/ui/Button";
+import { EmptyState } from "@/components/ui/EmptyState";
 import {
   Card,
   CardContent,
@@ -13,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
+import { Bookmark } from "lucide-react";
 import { api } from "@/lib/api";
 import { asJob } from "@/lib/jobHelpers";
 import { formatSalary } from "@/lib/utils";
@@ -71,12 +73,13 @@ function SavedJobsContent() {
               ))}
             </div>
           ) : items.length === 0 ? (
-            <div className="py-12 text-center">
-              <p className="text-slate-400">No saved jobs yet.</p>
-              <Link href="/jobs" className="mt-4 inline-block">
-                <Button>Explore jobs</Button>
-              </Link>
-            </div>
+            <EmptyState
+              icon={Bookmark}
+              title="No saved jobs yet"
+              description="Bookmark roles while exploring and they will show up here."
+              actionLabel="Explore jobs"
+              actionHref="/jobs"
+            />
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {items.map((item) => {

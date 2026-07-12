@@ -27,6 +27,7 @@ import {
 } from "recharts";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { EmptyState } from "@/components/ui/EmptyState";
 import {
   CHART_COLORS,
   DashboardHero,
@@ -317,10 +318,11 @@ export function UserDashboard({ user }: { user: User }) {
                 />
               ))
             ) : applications.length === 0 ? (
-              <EmptyBlock
+              <EmptyState
                 title="No applications yet"
-                href="/jobs"
-                cta="Browse open roles"
+                description="Explore open roles and apply with a cover letter in one click."
+                actionLabel="Browse open roles"
+                actionHref="/jobs"
               />
             ) : (
               applications.slice(0, 5).map((app) => {
@@ -482,10 +484,12 @@ export function UserDashboard({ user }: { user: User }) {
             ))}
           </div>
         ) : saved.length === 0 ? (
-          <EmptyBlock
+          <EmptyState
+            icon={Bookmark}
             title="No saved jobs"
-            href="/jobs"
-            cta="Find roles to save"
+            description="Bookmark roles you like and revisit them anytime."
+            actionLabel="Find roles to save"
+            actionHref="/jobs"
           />
         ) : (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -519,21 +523,4 @@ export function UserDashboard({ user }: { user: User }) {
   );
 }
 
-function EmptyBlock({
-  title,
-  href,
-  cta,
-}: {
-  title: string;
-  href: string;
-  cta: string;
-}) {
-  return (
-    <div className="rounded-2xl border border-dashed border-white/15 bg-white/[0.02] px-4 py-12 text-center">
-      <p className="text-sm text-slate-400">{title}</p>
-      <Link href={href} className="mt-4 inline-block">
-        <Button size="sm">{cta}</Button>
-      </Link>
-    </div>
-  );
-}
+

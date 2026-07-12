@@ -8,6 +8,7 @@ import { RoleGate } from "@/components/dashboard/RoleGate";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
+import { EmptyState } from "@/components/ui/EmptyState";
 import {
   Card,
   CardContent,
@@ -89,12 +90,12 @@ function ManageJobsContent() {
               />
             ))
           ) : jobs.length === 0 ? (
-            <div className="py-10 text-center">
-              <p className="text-slate-400">No jobs posted yet.</p>
-              <Link href="/dashboard/post" className="mt-4 inline-block">
-                <Button>Create first post</Button>
-              </Link>
-            </div>
+            <EmptyState
+              title="No jobs posted yet"
+              description="Publish your first listing to start receiving applications."
+              actionLabel="Create first post"
+              actionHref="/dashboard/post"
+            />
           ) : (
             jobs.map((job) => (
               <div
