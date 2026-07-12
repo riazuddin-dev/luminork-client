@@ -2,6 +2,8 @@
 
 import { AdminDashboard } from "@/components/dashboard/AdminDashboard";
 import { UserDashboard } from "@/components/dashboard/UserDashboard";
+import { PageTransition } from "@/components/ui/PageTransition";
+import { PageLoader } from "@/components/ui/Spinner";
 import { useAuth } from "@/context/AuthContext";
 
 /**
@@ -10,13 +12,21 @@ import { useAuth } from "@/context/AuthContext";
  * - user  → personal applications / saved jobs dashboard
  */
 export default function DashboardPage() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <PageLoader message="Loading your workspace…" />;
+  }
 
   if (!user) return null;
 
-  if (user.role === "admin") {
-    return <AdminDashboard user={user} />;
-  }
-
-  return <UserDashboard user={user} />;
+  return (
+    <PageTransition>
+      {user.role === "admin" ? (
+        <AdminDashboard user={user} />
+      ) : (
+        <UserDashboard user={user} />
+      )}
+    </PageTransition>
+  );
 }
