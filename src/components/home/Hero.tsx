@@ -96,7 +96,7 @@ export function Hero() {
 
           <form
             onSubmit={onSearch}
-            className="mt-8 flex flex-col gap-3 rounded-2xl border border-white/10 bg-slate-950/50 p-2 shadow-2xl shadow-indigo-950/40 backdrop-blur sm:flex-row sm:items-center"
+            className="mt-8 flex flex-col gap-3 rounded-2xl border border-white/10 bg-slate-950/50 p-2 shadow-2xl shadow-indigo-950/40 ring-1 ring-indigo-400/10 backdrop-blur transition focus-within:border-indigo-400/30 focus-within:ring-indigo-400/25 sm:flex-row sm:items-center"
           >
             <div className="flex flex-1 items-center gap-2 px-3">
               <Search className="h-5 w-5 text-slate-400" />
