@@ -22,29 +22,29 @@ function LoginForm() {
     e.preventDefault();
 
     if (!email.trim() || !password) {
-      toast.error("Validation error", {
+      toast.error("Missing details", {
         description: "Email and password are required.",
       });
       return;
     }
 
     if (password.length < 6) {
-      toast.error("Validation error", {
+      toast.error("Weak password", {
         description: "Password must be at least 6 characters.",
       });
       return;
     }
 
     setLoading(true);
-    const toastId = toast.loading("Signing you in...", {
-      description: "Please wait while we verify your credentials.",
+    const toastId = toast.loading("Signing you in…", {
+      description: "Verifying credentials securely.",
     });
 
     try {
       await login(email.trim(), password);
-      toast.success("Login successful", {
+      toast.success("Welcome back", {
         id: toastId,
-        description: "Welcome back to Luminork.",
+        description: "Redirecting to your Luminork dashboard.",
       });
 
       const redirect = searchParams.get("redirect");
@@ -62,10 +62,10 @@ function LoginForm() {
         message.toLowerCase().includes("network") ||
         message.toLowerCase().includes("failed to fetch");
 
-      toast.error(isNetwork ? "Network error" : "Login failed", {
+      toast.error(isNetwork ? "Connection failed" : "Login failed", {
         id: toastId,
         description: isNetwork
-          ? "Could not reach the server. Check your connection and try again."
+          ? "Could not reach the API. Is the server running on port 5000?"
           : message,
       });
     } finally {
