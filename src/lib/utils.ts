@@ -25,8 +25,15 @@ export function formatDate(value: string | Date) {
 export function getInitials(name: string) {
   return name
     .split(" ")
+    .filter(Boolean)
     .map((part) => part[0])
     .join("")
     .slice(0, 2)
     .toUpperCase();
+}
+
+/** Truncate long text with ellipsis for cards and tables */
+export function truncate(text: string, max = 120) {
+  if (!text) return "";
+  return text.length <= max ? text : `${text.slice(0, max).trimEnd()}…`;
 }
