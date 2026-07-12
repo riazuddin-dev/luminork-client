@@ -17,7 +17,7 @@ export function JobCard({ job, index = 0 }: { job: Job; index?: number }) {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.4, delay: (index % 4) * 0.05 }}
       whileHover={{ y: -6 }}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 shadow-lg shadow-black/20 backdrop-blur"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 shadow-lg shadow-black/20 backdrop-blur transition duration-300 hover:border-indigo-400/35 hover:shadow-xl hover:shadow-indigo-950/30"
     >
       <div className="relative h-40 overflow-hidden bg-slate-800">
         <Image
