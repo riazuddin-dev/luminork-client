@@ -27,8 +27,11 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import {
+  ApplicationStatusBadge,
+  JobStatusBadge,
+} from "@/components/ui/StatusBadge";
 import {
   CHART_COLORS,
   DashboardHero,
@@ -398,9 +401,7 @@ export function AdminDashboard({ user }: { user: User }) {
                     {job.company} · {job.jobType}
                   </p>
                 </div>
-                <Badge tone={job.status === "active" ? "emerald" : "slate"}>
-                  {job.status}
-                </Badge>
+                <JobStatusBadge status={job.status} />
               </Link>
             ))}
             {!loading && (!data || data.recentJobs.length === 0) && (
@@ -442,7 +443,7 @@ export function AdminDashboard({ user }: { user: User }) {
                       {job?.title || "Job"} · {formatDate(app.createdAt)}
                     </p>
                   </div>
-                  <Badge tone="cyan">{app.status}</Badge>
+                  <ApplicationStatusBadge status={app.status} />
                 </div>
               );
             })}

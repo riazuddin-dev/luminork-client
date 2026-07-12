@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { RoleGate } from "@/components/dashboard/RoleGate";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import {
   Card,
@@ -23,22 +22,12 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { Input, Select } from "@/components/ui/Input";
+import { ApplicationStatusBadge } from "@/components/ui/StatusBadge";
 import { useAuth } from "@/context/AuthContext";
 import { api } from "@/lib/api";
 import { asJob } from "@/lib/jobHelpers";
 import { formatDate } from "@/lib/utils";
 import type { Application } from "@/types";
-
-const statusTone: Record<
-  string,
-  "amber" | "cyan" | "emerald" | "slate" | "violet" | "indigo"
-> = {
-  pending: "amber",
-  reviewed: "cyan",
-  shortlisted: "violet",
-  rejected: "slate",
-  hired: "emerald",
-};
 
 /** Job seeker: personal application list */
 function MyApplicationsContent() {
@@ -133,7 +122,7 @@ function MyApplicationsContent() {
                     </div>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <Badge>{app.status}</Badge>
+                    <ApplicationStatusBadge status={app.status} />
                     {job?._id && (
                       <Link href={`/jobs/${job._id}`}>
                         <Button size="sm" variant="outline">
@@ -335,9 +324,7 @@ function AdminApplicationsContent() {
                             {formatDate(app.createdAt)}
                           </p>
                         </div>
-                        <Badge tone={statusTone[app.status] || "slate"}>
-                          {app.status}
-                        </Badge>
+                        <ApplicationStatusBadge status={app.status} />
                       </div>
                     </button>
                   );
@@ -372,12 +359,9 @@ function AdminApplicationsContent() {
                             <h3 className="text-lg font-semibold text-white">
                               {selected.userName}
                             </h3>
-                            <Badge
-                              className="mt-1"
-                              tone={statusTone[selected.status] || "slate"}
-                            >
-                              {selected.status}
-                            </Badge>
+                            <div className="mt-1">
+                              <ApplicationStatusBadge status={selected.status} />
+                            </div>
                           </div>
                         </div>
 

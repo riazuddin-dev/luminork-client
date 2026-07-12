@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { RoleGate } from "@/components/dashboard/RoleGate";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { JobStatusBadge } from "@/components/ui/StatusBadge";
 import {
   Card,
   CardContent,
@@ -129,9 +129,7 @@ function ManageJobsContent() {
                   </div>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge tone={job.status === "active" ? "emerald" : "slate"}>
-                    {job.status}
-                  </Badge>
+                  <JobStatusBadge status={job.status} />
                   <Link href={`/jobs/${job._id}`}>
                     <Button size="sm" variant="outline">
                       View

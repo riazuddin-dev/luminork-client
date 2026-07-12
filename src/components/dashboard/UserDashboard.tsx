@@ -28,6 +28,7 @@ import {
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { ApplicationStatusBadge } from "@/components/ui/StatusBadge";
 import {
   CHART_COLORS,
   DashboardHero,
@@ -39,17 +40,6 @@ import { api } from "@/lib/api";
 import { asJob } from "@/lib/jobHelpers";
 import { formatDate, formatSalary, getInitials } from "@/lib/utils";
 import type { Application, SavedJobItem, User } from "@/types";
-
-const statusTone: Record<
-  string,
-  "amber" | "cyan" | "emerald" | "slate" | "violet"
-> = {
-  pending: "amber",
-  reviewed: "cyan",
-  shortlisted: "violet",
-  rejected: "slate",
-  hired: "emerald",
-};
 
 export function UserDashboard({ user }: { user: User }) {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -366,9 +356,7 @@ export function UserDashboard({ user }: { user: User }) {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Badge tone={statusTone[app.status] || "slate"}>
-                        {app.status}
-                      </Badge>
+                      <ApplicationStatusBadge status={app.status} />
                       {job?._id && (
                         <Link href={`/jobs/${job._id}`}>
                           <Button size="sm" variant="ghost">
