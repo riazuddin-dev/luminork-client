@@ -37,10 +37,12 @@ export function EmptyState({
         className
       )}
     >
-      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-indigo-500/15 text-indigo-200 shadow-inner">
+      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-indigo-500/20 to-cyan-500/10 text-indigo-200 shadow-inner shadow-indigo-500/10">
         <Icon className="h-6 w-6" />
       </div>
-      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <h3 className="text-base font-semibold tracking-tight text-white">
+        {title}
+      </h3>
       {description ? (
         <p className="mt-2 max-w-sm text-sm leading-relaxed text-slate-400">
           {description}
