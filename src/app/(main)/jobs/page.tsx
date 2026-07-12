@@ -9,6 +9,7 @@ import { JOB_CATEGORIES, JOB_TYPES } from "@/types";
 import { JobCard } from "@/components/jobs/JobCard";
 import { JobSkeletonGrid } from "@/components/jobs/JobSkeleton";
 import { Button } from "@/components/ui/Button";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { Input, Select } from "@/components/ui/Input";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -148,12 +149,13 @@ function JobsExplorer() {
         {loading ? (
           <JobSkeletonGrid count={8} />
         ) : jobs.length === 0 ? (
-          <div className="rounded-2xl border border-white/10 bg-slate-900/50 px-6 py-16 text-center">
-            <h3 className="text-xl font-semibold text-white">No jobs matched</h3>
-            <p className="mt-2 text-slate-400">
-              Try adjusting your search keywords or filter combinations.
-            </p>
-          </div>
+          <EmptyState
+            title="No jobs matched"
+            description="Try adjusting your search keywords or filter combinations."
+            actionLabel="Clear filters"
+            actionHref="/jobs"
+            className="py-16"
+          />
         ) : (
           <>
             <p className="mb-4 text-sm text-slate-400">
