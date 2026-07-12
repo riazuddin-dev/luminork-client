@@ -83,7 +83,9 @@ export function Hero() {
                   {slides[index].eyebrow}
                 </p>
                 <h1 className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">
-                  {slides[index].title}
+                  <span className="bg-gradient-to-r from-white via-indigo-100 to-cyan-200 bg-clip-text text-transparent">
+                    {slides[index].title}
+                  </span>
                 </h1>
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
                   {slides[index].subtitle}
