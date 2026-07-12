@@ -46,15 +46,15 @@ Open [http://localhost:3000](http://localhost:3000).
 
 See **[DEPLOY.md](./DEPLOY.md)** for full Vercel steps.
 
-### Production env (required after API is deployed)
-
-In Vercel → Settings → Environment Variables:
+### Production env
 
 ```env
-NEXT_PUBLIC_API_URL=https://YOUR-API-HOST/api
+NEXT_PUBLIC_API_URL=https://luminork-server.vercel.app
 ```
 
-Then **Redeploy**. All client API calls go through `src/lib/api.ts` → `API_BASE_URL` from `src/lib/config.ts`.
+This is set in `.env.production` (committed) and used on Vercel builds.  
+Resolved API base: `https://luminork-server.vercel.app/api`  
+All calls go through `src/lib/api.ts` → `API_BASE_URL` in `src/lib/config.ts`.
 
 ## Demo credentials
 

@@ -22,11 +22,12 @@ Deploy the **API first** (Render or Railway), then point this app at it.
 
    | Name | Value | Environments |
    |------|--------|--------------|
-   | `NEXT_PUBLIC_API_URL` | `https://YOUR-API-HOST/api` | Production (and Preview if desired) |
+   | `NEXT_PUBLIC_API_URL` | `https://luminork-server.vercel.app` | Production (and Preview if desired) |
    | `NEXT_PUBLIC_SITE_URL` | `https://luminork-client.vercel.app` | Production (optional) |
 
-   Include the `/api` suffix (or origin only — the client normalizes to `/api`).  
-   Example: `https://luminork-server.onrender.com/api`
+   Origin only is fine — the client normalizes to  
+   `https://luminork-server.vercel.app/api`.  
+   Also committed in `.env.production` for production builds.
 
 5. Click **Deploy** (or **Redeploy** after changing env vars).
 

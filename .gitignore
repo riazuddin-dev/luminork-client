@@ -18,12 +18,13 @@ out/
 # production
 build/
 
-# env files (keep .env.example for docs)
+# env files (keep .env.example + committed production public URL)
 .env
 .env.local
 .env.*.local
 .env*
 !.env.example
+!.env.production
 
 # misc / OS / IDE
 .DS_Store

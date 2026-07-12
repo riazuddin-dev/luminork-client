@@ -5,13 +5,18 @@
 
 const LOCAL_API = "http://localhost:5000/api";
 
+/** Live API host (Vercel). Prefer env; this is the production default. */
+const PRODUCTION_API = "https://luminork-server.vercel.app/api";
+
 /**
  * Normalize API base URL so callers always get `.../api` without a trailing slash.
  * Accepts either `https://host` or `https://host/api`.
  */
 export function normalizeApiUrl(raw?: string | null): string {
   let url = (raw || "").trim();
-  if (!url) return LOCAL_API;
+  if (!url) {
+    return process.env.NODE_ENV === "production" ? PRODUCTION_API : LOCAL_API;
+  }
 
   // Strip trailing slashes
   url = url.replace(/\/+$/, "");
@@ -26,8 +31,8 @@ export function normalizeApiUrl(raw?: string | null): string {
 
 /**
  * Resolved public API base used by all fetch calls.
- * Production: set NEXT_PUBLIC_API_URL in Vercel to your Render/Railway API.
- * Example: https://luminork-server.onrender.com/api
+ * Production: NEXT_PUBLIC_API_URL=https://luminork-server.vercel.app
+ * (normalized to https://luminork-server.vercel.app/api)
  */
 export const API_BASE_URL = normalizeApiUrl(
   process.env.NEXT_PUBLIC_API_URL
